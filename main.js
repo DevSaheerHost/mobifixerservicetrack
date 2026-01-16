@@ -73,3 +73,9 @@ firebase.database()
     console.error(err);
     showError("Something went wrong");
   });
+  
+  
+  
+  window.onerror((e)=>{
+    alert(e.message)
+  })
