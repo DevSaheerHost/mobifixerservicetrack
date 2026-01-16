@@ -28,6 +28,21 @@ alert(token); // A9X2
 
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAWQP1HENutTN4cPyMM86norOGMSXDnc2g",
+  authDomain: "c24o-c038b.firebaseapp.com",
+  databaseURL: "https://c24o-c038b-default-rtdb.firebaseio.com",
+  projectId: "c24o-c038b",
+  storageBucket: "c24o-c038b.firebasestorage.app",
+  messagingSenderId: "418015450687",
+  appId: "1:418015450687:web:3d0a9632558f242aad4a8a",
+  measurementId: "G-X98S86SEV2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
 
 
 
