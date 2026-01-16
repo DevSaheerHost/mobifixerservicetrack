@@ -28,3 +28,33 @@ alert(token); // A9X2
 
 
 
+
+
+
+
+firebase.database()
+  .ref(`shops/${shopSlug}/services/${serviceId}`)
+  .once('value')
+  .then(snapshot => {
+
+    if (!snapshot.exists()) {
+      alert("Service not found");
+      return;
+    }
+    alert(`data available, ${typeof snapshot.val}`)
+
+    const service = snapshot.val();
+
+    // 🔐 SECURITY CHECK (NON-NEGOTIABLE)
+    if (service.customerToken !== token) {
+      showError("Unauthorized access");
+      return;
+    }
+
+    // ✅ Fetch shop info separately
+    loadShopInfo(shopSlug, service);
+  })
+  .catch(err => {
+    console.error(err);
+    showError("Something went wrong");
+  });
