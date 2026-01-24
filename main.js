@@ -62,7 +62,7 @@ firebase.database()
 
     // 🔐 SECURITY CHECK (NON-NEGOTIABLE)
     if (service.customerToken !== token) {
-      showError("Unauthorized access");
+      alert("Unauthorized access");
       return;
     }
 
@@ -71,7 +71,7 @@ firebase.database()
   })
   .catch(err => {
     console.error(err);
-    showError("Something went wrong");
+    alert("Something went wrong");
   });
   
   
