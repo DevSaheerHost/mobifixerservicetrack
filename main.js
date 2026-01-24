@@ -26,7 +26,7 @@ const shopSlug = parts[1];
 const jobId = parts[3];
 const token = parts[4];
 
-alert(`shop: ${shopslug}`)
+alert(`shop: ${shopSlug}`)
 alert(`JobId: ${jobId}`); // 2423
 alert(`Token ${token}`); // A9X2
 
