@@ -1,3 +1,7 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 const App = {
   
 }
@@ -22,9 +26,9 @@ const shopSlug = parts[1];
 const jobId = parts[3];
 const token = parts[4];
 
-alert(shopSlug)
-alert(jobId); // 2423
-alert(token); // A9X2
+alert(`shop: ${shopslug}`)
+alert(`JobId: ${jobId}`); // 2423
+alert(`Token ${token}`); // A9X2
 
 
 
@@ -46,27 +50,23 @@ const auth = getAuth(app);
 
 
 
+const serviceRef = ref(db, `shops/${shopSlug}/services/${jobId}`);
 
-firebase.database()
-  .ref(`shops/${shopSlug}/services/${serviceId}`)
-  .once('value')
+get(serviceRef)
   .then(snapshot => {
-
     if (!snapshot.exists()) {
       alert("Service not found");
       return;
     }
-    alert(`data available, ${typeof snapshot.val}`)
 
     const service = snapshot.val();
-
-    // 🔐 SECURITY CHECK (NON-NEGOTIABLE)
+console.log(service)
+    // 🔐 SECURITY CHECK
     if (service.customerToken !== token) {
       alert("Unauthorized access");
       return;
     }
 
-    // ✅ Fetch shop info separately
     loadShopInfo(shopSlug, service);
   })
   .catch(err => {
@@ -76,6 +76,6 @@ firebase.database()
   
   
   
-  window.onerror((e)=>{
-    alert(e.message)
-  })
+  window.onerror = function (message, source, lineno, colno, error) {
+  alert(message);
+};
